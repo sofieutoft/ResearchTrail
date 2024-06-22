@@ -24,7 +24,8 @@ def extract_data(root):
             "id": entry.find("{http://www.w3.org/2005/Atom}id").text,
             "title": entry.find("{http://www.w3.org/2005/Atom}title").text,
             "summary": entry.find("{http://www.w3.org/2005/Atom}summary").text,
-            "published": entry.find("{http://www.w3.org/2005/Atom}published").text,
+            "published": 
+                entry.find("{http://www.w3.org/2005/Atom}published").text,
         }
         entries.append(entry_data)
     return entries
