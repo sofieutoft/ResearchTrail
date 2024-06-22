@@ -11,3 +11,5 @@
 * Clone repository
 
 > This repository uses the arXiv API to pull machine learning papers.
+
+![Style Status](https://github.com/sofieutoft/arXivproject/actions/workflows/style.yaml/badge.svg)
