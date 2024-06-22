@@ -15,6 +15,7 @@ def request(url, params):
         string = "An error occurred: " + str(err)
         return string
 
+
 # extract data
 def extract_data(root):
     entries = []
@@ -27,6 +28,7 @@ def extract_data(root):
         }
         entries.append(entry_data)
     return entries
+
 
 def connect(dict):
     df = pd.DataFrame.from_dict(dict)
@@ -57,6 +59,4 @@ request(url, parameters)
 # parse XML response
 root = ET.fromstring(response.content)
 dictionary = extract_data(root)
-
 connect(dictionary)
-
