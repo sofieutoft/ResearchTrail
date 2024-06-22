@@ -1,25 +1,47 @@
 import requests
+import sqlalchemy as db
+import pandas as pd
+import xml.etree.ElementTree as ET
 
-#url for arXiv API
-url = http://export.arxiv.org/api/query?
+#URL for arXiv API
+url = "http://export.arxiv.org/api/query"
 
-#parameters for my search_query
+#parameters for the search query
 params = {
-    search_query: all:machine learning,
-    start: 0,
-    max_results: 5
+    "search_query": "all:machine learning",
+    "start": 0,
+    "max_results": 5
 }
 
-#send the get request
-response = requests.get(url, params=params)
-
-#check if the request was successful
+#send the GET request
 try:
     response = requests.get(url, params=params)
     response.raise_for_status()
-    print(Request successful!)
-    print(response.text)
-except requests.exceptions.HTTPError as err:
-    print(fHTTP error occurred: {err})
+    print("Request successful!")
+    #print(response.text)
 except Exception as err:
-    print(fAn error occurred: {err})
+    print(f"An error occurred: {err}")
+
+#parse XML response
+root = ET.fromstring(response.content)
+
+#extract data
+entries = []
+for entry in root.findall("{http://www.w3.org/2005/Atom}entry"):
+    entry_data = {
+        "id": entry.find("{http://www.w3.org/2005/Atom}id").text,
+        "title": entry.find("{http://www.w3.org/2005/Atom}title").text,
+        "summary": entry.find("{http://www.w3.org/2005/Atom}summary").text,
+        "published": entry.find("{http://www.w3.org/2005/Atom}published").text,
+    }
+    entries.append(entry_data)
+
+df = pd.DataFrame.from_dict(entries)
+
+engine = db.create_engine('sqlite:///arXiv.db')
+
+df.to_sql('arXivPapers', con=engine, if_exists = 'replace', index=False)
+
+with engine.connect() as connection:
+   query_result = connection.execute(db.text("SELECT title FROM arXivPapers;")).fetchall()
+   print(pd.DataFrame(query_result))
