@@ -5,7 +5,7 @@ import xml.etree.ElementTree as ET
 
 
 # send the GET request
-def request(url, params):
+def get_request(url, params):
     try:
         response = requests.get(url, params=params)
         response.raise_for_status()

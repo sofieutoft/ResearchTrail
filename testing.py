@@ -1,10 +1,10 @@
 import unittest
-from arxiv_api_test import request
+from arxiv_api_test import get_request
 
 
 class TestFileName(unittest.TestCase):
-    def test_request(self):
-        self.assertEqual(request(
+    def test_get_request(self):
+        self.assertEqual(get_request(
           "http://export.arxiv.org/api/query",
           {"search_query": "all:machine learning",
               "start": 0,
