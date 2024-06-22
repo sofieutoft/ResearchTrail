@@ -3,29 +3,29 @@ import sqlalchemy as db
 import pandas as pd
 import xml.etree.ElementTree as ET
 
-#URL for arXiv API
+# URL for arXiv API
 url = "http://export.arxiv.org/api/query"
 
-#parameters for the search query
+# parameters for the search query
 params = {
     "search_query": "all:machine learning",
     "start": 0,
     "max_results": 5
 }
 
-#send the GET request
+# send the GET request
 try:
     response = requests.get(url, params=params)
     response.raise_for_status()
     print("Request successful!")
-    #print(response.text)
+    # print(response.text)
 except Exception as err:
     print(f"An error occurred: {err}")
 
-#parse XML response
+# parse XML response
 root = ET.fromstring(response.content)
 
-#extract data
+# extract data
 entries = []
 for entry in root.findall("{http://www.w3.org/2005/Atom}entry"):
     entry_data = {
@@ -40,8 +40,9 @@ df = pd.DataFrame.from_dict(entries)
 
 engine = db.create_engine('sqlite:///arXiv.db')
 
-df.to_sql('arXivPapers', con=engine, if_exists = 'replace', index=False)
+df.to_sql('arXivPapers', con=engine, if_exists='replace', index=False)
 
 with engine.connect() as connection:
-   query_result = connection.execute(db.text("SELECT title FROM arXivPapers;")).fetchall()
-   print(pd.DataFrame(query_result))
+    query_result = connection.execute(
+        db.text("SELECT title FROM arXivPapers;")).fetchall()
+    print(pd.DataFrame(query_result))
