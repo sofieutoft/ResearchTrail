@@ -15,7 +15,6 @@ engine = db.create_engine(DATABASE_URI)
 @app.route('/')
 def index():
     data = fetch_all_papers(engine)
-    #data['summary'] = data['summary'].str.replace('\n', '<br>')
     selected_columns = ['title', 'summary', 'published', 'link']
     #table_data = data[selected_columns].to_html(escape=False)
     table_data = data[selected_columns].to_dict(orient='records')
@@ -35,7 +34,8 @@ def recommend():
 
     recommendations = get_recommendations(data, paper_id)
     #title = data['title'][data['link'] == paper_id]
-    return render_template('recommend.html', title=paper_id, recommendations=recommendations)
+    return render_template(
+        'recommend.html', title=paper_id, recommendations=recommendations)
 
 
 if __name__ == '__main__':
