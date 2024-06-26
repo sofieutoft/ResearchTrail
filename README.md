@@ -56,6 +56,7 @@ This project fetches machine learning papers from the arXiv API, processes the d
 
 - Flask
 - requests
+- coverage
 - SQLAlchemy
 - panda
 - nltk
