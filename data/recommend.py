@@ -11,7 +11,7 @@ def get_recommendations(data, paper_id):
     cosine_sim = cosine_similarity(tfidf_matrix, tfidf_matrix)
 
     # Get the index of the paper that matches the paper_id
-    idx = data.index[data['id'] == paper_id].tolist()[0]
+    idx = data.index[data['link'] == paper_id].tolist()[0]
     # Get the pairwise similarity scores of all papers with that paper
     sim_scores = list(enumerate(cosine_sim[idx]))
     # Sort the papers based on the similarity scores

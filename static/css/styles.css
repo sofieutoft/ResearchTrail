@@ -15,6 +15,12 @@ h1 {
     margin-bottom: 20px; /* Add some spacing below the heading */
 }
 
+h2 {
+    color: #007BFF;
+    text-align: center;
+    margin-bottom: 5px; /* Add some spacing below the heading */
+}
+
 /* Style for unordered lists */
 ul {
     list-style-type: none;

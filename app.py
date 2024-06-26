@@ -17,7 +17,8 @@ def index():
     data = fetch_all_papers(engine)
     #data['summary'] = data['summary'].str.replace('\n', '<br>')
     selected_columns = ['title', 'summary', 'published', 'link']
-    table_data = data[selected_columns].to_html(escape=False)
+    #table_data = data[selected_columns].to_html(escape=False)
+    table_data = data[selected_columns].to_dict(orient='records')
     return render_template('index.html', table_data=table_data)
 
 
@@ -29,19 +30,20 @@ def recommend():
     # Validate paper_id
     if paper_id is None or paper_id not in data['link'].values:
         error_message = f"Paper with id '{paper_id}' not found."
+        print(f"Error: {error_message}")
         return render_template('error.html', error_message=error_message)
 
     recommendations = get_recommendations(data, paper_id)
-    return render_template(
-        'recommend.html', paper_id=paper_id, recommendations=recommendations)
+    #title = data['title'][data['link'] == paper_id]
+    return render_template('recommend.html', title=paper_id, recommendations=recommendations)
 
 
 if __name__ == '__main__':
     # Fetch and process data
     parameters = {
-        "search_query": "all:EEGEyeNet",
+        "search_query": "all:machine learning",
         "start": 0,
-        "max_results": 50
+        "max_results": 500
     }
     response = get_request(ARXIV_API_URL, parameters)
     data = extract_data(response.content)

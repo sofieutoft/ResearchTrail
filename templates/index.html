@@ -7,9 +7,35 @@
     <title>arXiv Papers</title>
 </head>
 <body>
-    <h1>arXiv Papers</h1>
+    <h1>arXiv Paper Recommendation System</h1>
+    <h2> Click the Paper Title for Similar Papers </h2>
     <div class="table-container">
-        {{ table_data|safe }}  <!-- Display the table data safely -->
+        <table>
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Summary</th>
+                    <th>Year</th>
+                    <!-- Additional headers as needed -->
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in table_data %}
+                <tr>
+                    <td><a href="javascript:void(0);" onclick="goToRecommendation('{{ row.link }}')">{{ row.title }}</a></td>
+                    <td>{{ row.summary }}</td>
+                    <td>{{ row.published }}</td>
+                    <!-- Additional columns as needed -->
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
+    <script>
+        // JavaScript function to redirect to recommend.html with paper ID
+        function goToRecommendation(link) {
+            window.location.href = `/recommend?link=${link}`;
+        }
+    </script>
 </body>
 </html>
