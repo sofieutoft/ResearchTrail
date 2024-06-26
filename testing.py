@@ -1,5 +1,5 @@
 import unittest
-from arxiv_api_test import get_request
+from app import get_request
 
 
 class TestFileName(unittest.TestCase):
