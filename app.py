@@ -15,16 +15,19 @@ engine = db.create_engine(DATABASE_URI)
 @app.route('/')
 def index():
     data = fetch_all_papers(engine)
-    return render_template('index.html', tables=[data.to_html()], titles=[''])
+    #data['summary'] = data['summary'].str.replace('\n', '<br>')
+    selected_columns = ['title', 'summary', 'published', 'link']
+    table_data = data[selected_columns].to_html(escape=False)
+    return render_template('index.html', table_data=table_data)
 
 
 @app.route('/recommend', methods=['GET'])
 def recommend():
-    paper_id = request.args.get('id')
+    paper_id = request.args.get('link')
     data = fetch_all_papers(engine)  # Fetch data again to ensure it's in scope
 
     # Validate paper_id
-    if paper_id is None or paper_id not in data['id'].values:
+    if paper_id is None or paper_id not in data['link'].values:
         error_message = f"Paper with id '{paper_id}' not found."
         return render_template('error.html', error_message=error_message)
 
@@ -36,9 +39,9 @@ def recommend():
 if __name__ == '__main__':
     # Fetch and process data
     parameters = {
-        "search_query": "all:machine learning",
+        "search_query": "all:EEGEyeNet",
         "start": 0,
-        "max_results": 5
+        "max_results": 50
     }
     response = get_request(ARXIV_API_URL, parameters)
     data = extract_data(response.content)

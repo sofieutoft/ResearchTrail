@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/css/styles.css"> <!-- Link to your CSS file -->
     <title>arXiv Papers</title>
 </head>
 <body>
     <h1>arXiv Papers</h1>
-    <div>
-        {{ tables[0]|safe }}
+    <div class="table-container">
+        {{ table_data|safe }}  <!-- Display the table data safely -->
     </div>
 </body>
 </html>

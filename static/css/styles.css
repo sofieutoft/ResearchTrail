@@ -1,20 +1,32 @@
+/* styles.css */
+
+/* General body styling */
 body {
     font-family: 'Times New Roman', Times, serif;
+    background-color: #f8f9fa; /* Light background color */
+    margin: 0;
+    padding: 20px;
 }
 
+/* Center the main heading */
 h1 {
     color: #333;
+    text-align: center;
+    margin-bottom: 20px; /* Add some spacing below the heading */
 }
 
+/* Style for unordered lists */
 ul {
     list-style-type: none;
     padding: 0;
 }
 
+/* Margin for list items */
 li {
     margin: 5px 0;
 }
 
+/* Links styling */
 a {
     text-decoration: none;
     color: #007BFF;
@@ -22,4 +34,31 @@ a {
 
 a:hover {
     text-decoration: underline;
+}
+
+/* Table styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff; /* White background for the table */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Box shadow for a subtle lift effect */
+}
+
+/* Table header styling */
+th {
+    background-color: #007BFF; /* Blue background for headers */
+    color: #fff; /* White text color */
+    padding: 12px;
+    text-align: left;
+}
+
+/* Table row styling */
+td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd; /* Light gray border bottom for rows */
+}
+
+/* Alternate row background color */
+tr:nth-child(even) {
+    background-color: #f2f2f2; /* Light gray background for even rows */
 }
