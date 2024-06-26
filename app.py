@@ -9,16 +9,18 @@ import sqlalchemy as db
 
 
 app = Flask(__name__)
-
+engine = db.create_engine(DATABASE_URI)
 
 @app.route('/')
 def index():
-    engine = db.create_engine(DATABASE_URI)
     with engine.connect() as connection:
         query_result = connection.execute(
             db.text("SELECT * FROM arXivPapers;")).fetchall()
-        data = pd.DataFrame(query_result, columns=query_result[0].keys())
-    return render_template('index.html', data=data)
+        if query_result:
+            data = pd.DataFrame(query_result, columns=query_result[0].keys())
+        else:
+            data = pd.DataFrame()
+    return render_template('index.html', tables=[data.to_html()], titles=[''])
 
 
 @app.route('/recommend', methods=['GET'])

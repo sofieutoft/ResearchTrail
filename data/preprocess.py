@@ -4,8 +4,16 @@ from nltk.tokenize import word_tokenize
 
 # Download NLTK stopwords
 import nltk
+import ssl
+try:
+    _create_unverified_https_context = ssl._create_unverified_context
+except AttributeError:
+    pass
+else:
+    ssl._create_default_https_context = _create_unverified_https_context
 nltk.download('punkt')
 nltk.download('stopwords')
+
 
 def preprocess_text(text):
     # Remove punctuation and lower the text
