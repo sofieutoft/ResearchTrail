@@ -2,7 +2,7 @@
 
 This project fetches machine learning papers from the arXiv API, processes the data, and provides a recommendation system to suggest related papers based on content similarity. The aim of this project is to streamline the literature review process.
 
-### File Details
+## File Details
 
 - **`app.py`**: Main application logic.
 - **`requirements.txt`**: Project dependencies.
