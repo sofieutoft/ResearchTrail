@@ -4,3 +4,4 @@ SQLAlchemy
 pandas
 nltk
 scikit-learn
+coverage
