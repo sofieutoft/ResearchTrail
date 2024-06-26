@@ -2,16 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recommendations</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
     <h1>Recommendations for Paper ID: {{ paper_id }}</h1>
     <ul>
-        {% for title in recommendations %}
-        <li>{{ title }}</li>
+        {% for recommendation in recommendations %}
+            <li>{{ recommendation }}</li>
         {% endfor %}
     </ul>
-    <a href="{{ url_for('index') }}">Back to Papers</a>
 </body>
 </html>
