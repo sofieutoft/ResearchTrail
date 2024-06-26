@@ -11,6 +11,7 @@ import sqlalchemy as db
 app = Flask(__name__)
 engine = db.create_engine(DATABASE_URI)
 
+
 @app.route('/')
 def index():
     data = fetch_all_papers(engine)
@@ -21,7 +22,7 @@ def index():
 def recommend():
     paper_id = request.args.get('id')
     data = fetch_all_papers(engine)  # Fetch data again to ensure it's in scope
-    
+
     # Validate paper_id
     if paper_id is None or paper_id not in data['id'].values:
         error_message = f"Paper with id '{paper_id}' not found."
