@@ -76,7 +76,7 @@ To deploy using Docker, follow these steps:
 - requests
 - coverage
 - SQLAlchemy
-- panda
+- pandas
 - nltk
 - scikit-learn
 
