@@ -2,7 +2,6 @@
 
 This project fetches machine learning papers from the arXiv API, processes the data, and provides a recommendation system to suggest related papers based on content similarity. The aim of this project is to streamline the literature review process.
 
-
 ### File Details
 
 - **`app.py`**: Main application logic.
@@ -19,6 +18,9 @@ This project fetches machine learning papers from the arXiv API, processes the d
   - **`recommend.html`**: Template to display recommended papers.
 - **`static/css/`**: CSS stylesheets for the web application.
   - **`styles.css`**: Stylesheet for the web application.
+  - **`style2.css`**: Another stylesheet for the web application.
+- **`Dockerfile`**: Docker configuration file for containerization.
+- **`.dockerignore`**: File to specify Docker files and directories to ignore.
 
 ## Setup Instructions
 
@@ -39,12 +41,28 @@ This project fetches machine learning papers from the arXiv API, processes the d
     pip install -r requirements.txt
     ```
 
-4. Run the application:
+4. Run the application locally:
     ```bash
     python app.py
     ```
 
-5. Open your browser and go to `http://127.0.0.1:5000/` to view the application.
+5. Open your browser and go to `http://127.0.0.1:1024/` to view the application.
+
+## Docker Deployment
+
+To deploy using Docker, follow these steps:
+
+1. Build the Docker image:
+    ```bash
+    docker build -t arxiv-recommendation-system .
+    ```
+
+2. Run the Docker container:
+    ```bash
+    docker run -p 1024:1024 arxiv-recommendation-system
+    ```
+
+3. Open your browser and go to `http://localhost:1024/` to view the application.
 
 ## Usage
 
@@ -63,6 +81,5 @@ This project fetches machine learning papers from the arXiv API, processes the d
 - scikit-learn
 
 Make sure to install these dependencies using the `requirements.txt` file provided.
-
 
 ![Style Status](https://github.com/sofieutoft/arXivproject/actions/workflows/style.yaml/badge.svg)
