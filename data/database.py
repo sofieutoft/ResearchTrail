@@ -8,9 +8,10 @@ def connect(data):
 
 def fetch_all_papers(engine):
     with engine.connect() as connection:
-        query_result = connection.execute(
-            db.text("SELECT title FROM arXivPapers;")).fetchall()
-        if query_result:
-            return pd.DataFrame(query_result, columns=query_result[0].keys())
+        query_result = connection.execute(db.text("SELECT * FROM arXivPapers;"))
+        rows = query_result.fetchall()
+        if rows:
+            columns = query_result.keys()
+            return pd.DataFrame(rows, columns=columns)
         else:
             return pd.DataFrame()
