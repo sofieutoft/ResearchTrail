@@ -25,7 +25,8 @@ def index():
 def recommend():
     paper_id = request.args.get('id')
     recommendations = get_recommendations(data, paper_id)
-    return render_template('recommend.html', paper_id=paper_id, recommendations=recommendations)
+    return render_template(
+        'recommend.html', paper_id=paper_id, recommendations=recommendations)
 
 
 if __name__ == '__main__':
