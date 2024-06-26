@@ -54,12 +54,12 @@ This project fetches machine learning papers from the arXiv API, processes the d
 
 ## Dependencies
 
-- Flask==2.0.2
-- requests==2.26.0
-- SQLAlchemy==1.4.25
-- pandas==1.3.3
-- nltk==3.6.3
-- scikit-learn==0.24.2
+- Flask
+- requests
+- SQLAlchemy
+- panda
+- nltk
+- scikit-learn
 
 Make sure to install these dependencies using the `requirements.txt` file provided.
 
