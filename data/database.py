@@ -4,7 +4,7 @@ from config import DATABASE_URI
 
 def connect(data):
     engine = db.create_engine(DATABASE_URI)
-    df.to_sql('arXivPapers', con=engine, if_exists='replace', index=False)
+    data.to_sql('arXivPapers', con=engine, if_exists='replace', index=False)
 
 def fetch_all_papers(engine):
     with engine.connect() as connection:
