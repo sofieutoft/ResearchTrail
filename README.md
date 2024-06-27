@@ -41,12 +41,12 @@ This project fetches machine learning papers from the arXiv API, processes the d
     pip install -r ./arXivproject/requirements.txt
     ```
 
-4. Run the application locally:
+4. Run the application locally (must update ```app.run(host='0.0.0.0', port=1024)``` in app.py to correct host & port):
     ```bash
     python3 ./arXivproject/app.py
     ```
 
-5. Open your browser and go to `http://127.0.0.1:1024/` to view the application.
+5. Open your browser and go to `http://127.0.0.1:1024/` to view the application (depends on host & port).
 
 ## Docker Deployment
 
