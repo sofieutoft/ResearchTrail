@@ -38,12 +38,12 @@ This project fetches machine learning papers from the arXiv API, processes the d
 
 3. Install the required packages:
     ```bash
-    pip install -r requirements.txt
+    pip install -r ./arXivproject/requirements.txt
     ```
 
 4. Run the application locally:
     ```bash
-    python app.py
+    python3 ./arXivproject/app.py
     ```
 
 5. Open your browser and go to `http://127.0.0.1:1024/` to view the application.
