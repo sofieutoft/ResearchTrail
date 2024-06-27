@@ -16,7 +16,6 @@ engine = db.create_engine(DATABASE_URI)
 def index():
     data = fetch_all_papers(engine)
     selected_columns = ['title', 'summary', 'published', 'link']
-    #table_data = data[selected_columns].to_html(escape=False)
     table_data = data[selected_columns].to_dict(orient='records')
     return render_template('index.html', table_data=table_data)
 
