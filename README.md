@@ -27,7 +27,7 @@ This project fetches machine learning papers from the arXiv API, processes the d
 1. Clone the repository:
     ```bash
     git clone https://github.com/sofieutoft/arXivproject.git
-    cd arxiv-recommendation-system
+    cd arXivproject
     ```
 
 2. Create a virtual environment and activate it:
