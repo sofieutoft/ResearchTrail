@@ -32,7 +32,7 @@ def recommend():
         return render_template('error.html', error_message=error_message)
 
     recommendations = get_recommendations(data, paper_id)
-    #title = data['title'][data['link'] == paper_id]
+    # title = data['title'][data['link'] == paper_id]
     return render_template(
         'recommend.html', title=paper_id, recommendations=recommendations)
 
