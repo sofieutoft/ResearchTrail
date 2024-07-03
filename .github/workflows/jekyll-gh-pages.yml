@@ -35,6 +35,8 @@ jobs:
         with:
           source: ./
           destination: ./_site
+          config: _config.yml # Specify your Jekyll config file if it's different
+          jekyll_opts: theme: jekyll-theme-minimal # Add the theme configuration here
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
 
