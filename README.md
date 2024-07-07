@@ -38,7 +38,7 @@ This project fetches machine learning papers from the arXiv API, processes the d
 
 3. Install the required packages:
     ```bash
-    pip install -r ./arXivproject/requirements.txt
+    pip install -r ./requirements.txt
     ```
 
 4. Run the application locally (must update ```app.run(host='0.0.0.0', port=1024)``` in app.py to correct host & port):
