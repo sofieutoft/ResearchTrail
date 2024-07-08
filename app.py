@@ -1,4 +1,5 @@
-from flask import Flask, render_template, url_for, flash, redirect, requestfrom config import ARXIV_API_URL, DATABASE_URI
+from flask import Flask, render_template, url_for, flash, redirect, request
+from config import ARXIV_API_URL, DATABASE_URI
 from data.fetch_data import get_request, extract_data
 from data.preprocess import preprocess_text
 from data.database import connect, fetch_all_papers
@@ -39,7 +40,7 @@ def recommend():
 @app.route("/update_server", methods=['POST'])
 def webhook():
     if request.method == 'POST':
-        repo = git.Repo('/home/arXivProject/arXivproject)
+        repo = git.Repo('/home/arXivProject/arXivproject')
         origin = repo.remotes.origin
         origin.pull()
         return 'Updated PythonAnywhere successfully', 200
