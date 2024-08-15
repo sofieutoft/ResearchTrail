@@ -10,15 +10,16 @@ import sqlalchemy as db
 app = Flask(__name__)
 engine = db.create_engine(DATABASE_URI)
 
+
 @app.route('/')
 def index():
-    search_query = request.args.get('query', 'all:machine learning')  # Default to 'all:machine learning'
+    search_query = request.args.get('query', 'all:machine learning')
     parameters = {
         "search_query": search_query,
         "start": 0,
         "max_results": 500
     }
-    
+
     # Fetch and process data
     response = get_request(ARXIV_API_URL, parameters)
     data = extract_data(response.content)
@@ -41,7 +42,7 @@ def index():
 @app.route('/recommend', methods=['GET'])
 def recommend():
     paper_id = request.args.get('link')
-    data = fetch_all_papers(engine)  
+    data = fetch_all_papers(engine)
 
     # Validate paper_id
     if paper_id is None or paper_id not in data['link'].values:
@@ -57,6 +58,7 @@ def recommend():
     
     return render_template('recommend.html', title=title, recommendations=recommendations)
 
+
 @app.route("/update_server", methods=['POST'])
 def webhook():
     if request.method == 'POST':
@@ -69,6 +71,7 @@ def webhook():
             print(f"Error updating repository: {e}")
             return 'Failed to update repository', 500
     return 'Wrong event type', 400
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=1024, debug=True)
