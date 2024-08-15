@@ -3,15 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="static/css/style2.css"> <!-- Link to your CSS file -->
+    <link rel="stylesheet" href="static/css/style2.css">
     <title>Recommendations</title>
 </head>
 <body>
-    <h1>Recommendations for Paper: {{ title }}</h1>
+    <h1>Recommendations for Paper: <a href="{{ request.args.get('link') }}">{{ title }}</a></h1>
     <ul>
-        {% for recommendation in recommendations %}
-            <li>{{ recommendation }}</li>
+        {% for rec_title, rec_link in recommendations %}
+            <li><a href="{{ rec_link }}">{{ rec_title }}</a></li>
         {% endfor %}
     </ul>
+    <form action="{{ url_for('index') }}" method="get">
+        <button type="submit">Back to Main Page</button>
+    </form>
 </body>
 </html>

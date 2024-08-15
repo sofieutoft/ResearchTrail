@@ -20,5 +20,8 @@ def get_recommendations(data, paper_id):
     sim_scores = sim_scores[1:6]
     # Get the paper indices
     paper_indices = [i[0] for i in sim_scores]
-    # Return the titles of the most similar papers
-    return data['title'].iloc[paper_indices]
+    # Extract the titles and links of the recommended papers
+    recommended_titles = data['title'].iloc[paper_indices].tolist()
+    recommended_links = data['link'].iloc[paper_indices].tolist()
+    # Return the titles and links as two separate lists
+    return recommended_titles, recommended_links
