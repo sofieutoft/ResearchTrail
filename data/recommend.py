@@ -16,8 +16,8 @@ def get_recommendations(data, paper_id):
     sim_scores = list(enumerate(cosine_sim[idx]))
     # Sort the papers based on the similarity scores
     sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)
-    # Get the indices of the 5 most similar papers
-    sim_scores = sim_scores[1:6]
+    # Get the indices of the 15 most similar papers
+    sim_scores = sim_scores[1:16]
     # Get the paper indices
     paper_indices = [i[0] for i in sim_scores]
     # Extract the titles and links of the recommended papers

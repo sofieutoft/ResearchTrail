@@ -3,18 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="static/css/style2.css">
+    <link rel="stylesheet" href="static/css/styles.css">
     <title>Recommendations</title>
 </head>
 <body>
-    <h1>Recommendations for Paper: <a href="{{ request.args.get('link') }}">{{ title }}</a></h1>
-    <ul>
-        {% for rec_title, rec_link in recommendations %}
-            <li><a href="{{ rec_link }}">{{ rec_title }}</a></li>
-        {% endfor %}
-    </ul>
-    <form action="{{ url_for('index') }}" method="get">
-        <button type="submit">Back to Main Page</button>
-    </form>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">Research Trail</a>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="/about" class="nav-link">About</a></li>
+            </ul>
+        </div>
+    </nav> 
+    <div class="header-container">
+        <h1> Recommendations for Paper:</h1>
+        <h2 style= "font-size: 1.5em;"> <a style = "color: #588157;" href="{{ request.args.get('link') }}">{{ title }}</a></h2>
+    </div>
+    <div class="table-container">
+        <ul>
+            {% for rec_title, rec_link in recommendations %}
+                <li><a href="{{ rec_link }}">{{ rec_title }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
 </body>
 </html>

@@ -4,41 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-    <title>arXiv Papers</title>
+    <title>Research Paper Recommendations</title>
 </head>
 <body>
-    <h1>arXiv Paper Recommendation System</h1>
-    <h2>Click the Paper Title for Similar Papers</h2>
-    
-    <div class="search-container">
-        <form action="/" method="get">
-            <input type="text" id="search-query" name="query" value="{{ search_query }}" placeholder="Enter keywords..." />
-            <button type="submit">Search</button>
-        </form>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">Research Trail</a>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="/about" class="nav-link">About</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div>
+        <h1>Research Paper Recommendation System</h1>
+        <div class="header-container">
+            <h2>Follow the Trail: Click a Paper Title to Discover Related Research</h2>
+            <div class="search-container">
+                <form action="/" method="get">
+                    <input type="text" id="search-query" name="query" value="{{ search_query }}" placeholder="Enter keywords..." />
+                    <button type="submit">Search</button>
+                </form>
+            </div>
+        </div>        
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Summary</th>
+                        <th>Published</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in table_data %}
+                    <tr>
+                        <td><a href="javascript:void(0);" onclick="goToRecommendation('{{ row.link }}')">{{ row.title }}</a></td>
+                        <td>{{ row.summary }}</td>
+                        <td>{{ row.published }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </div>
-    
-    <div class="table-container">
-        <table>
-            <thead>
-                <tr>
-                    <th>Title</th>
-                    <th>Summary</th>
-                    <th>Published</th>
-                    <!-- Additional headers as needed -->
-                </tr>
-            </thead>
-            <tbody>
-                {% for row in table_data %}
-                <tr>
-                    <td><a href="javascript:void(0);" onclick="goToRecommendation('{{ row.link }}')">{{ row.title }}</a></td>
-                    <td>{{ row.summary }}</td>
-                    <td>{{ row.published }}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
-    
     <script>
         function goToRecommendation(link) {
             window.location.href = `/recommend?link=${encodeURIComponent(link)}`;

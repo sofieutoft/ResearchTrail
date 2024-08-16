@@ -25,7 +25,7 @@ def index():
     data = extract_data(response.content)
     data = pd.DataFrame(data)
     data['clean_summary'] = data['summary'].apply(preprocess_text)
-    
+
     # Connect to database and store data
     connect(data)
     
@@ -37,7 +37,9 @@ def index():
 
     selected_columns = ['title', 'summary', 'published', 'link']
     table_data = data[selected_columns].to_dict(orient='records')
-    return render_template('index.html', table_data=table_data, search_query=search_query)
+    return render_template('index.html', 
+                           table_data=table_data, search_query=search_query)
+
 
 @app.route('/recommend', methods=['GET'])
 def recommend():
@@ -72,6 +74,9 @@ def webhook():
             return 'Failed to update repository', 500
     return 'Wrong event type', 400
 
+@app.route('/about')
+def about():
+    return render_template('about.html')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=1024, debug=True)

@@ -1,98 +1,211 @@
-/* styles.css */
-
-/* General body styling */
 body {
     font-family: 'Times New Roman', Times, serif;
-    background-color: #f8f9fa; /* Light background color */
+    background-color: #E5E2DC;
+    color: #333;
     margin: 0;
-    padding: 20px;
+    padding: 0;
+    min-height: 100vh;
 }
 
-/* Center the main heading */
 h1 {
-    color: #333;
     text-align: center;
-    margin-bottom: 20px; /* Add some spacing below the heading */
+    color: #3A5A40;
+    margin: 13px;
 }
 
 h2 {
-    color: #007BFF;
-    text-align: center;
-    margin-bottom: 5px; /* Add some spacing below the heading */
+    color: #3A5A40;
 }
 
-/* Style for unordered lists */
-ul {
-    list-style-type: none;
-    padding: 0;
+.header-container {
+    display: flex;
+    align-items: center; /* Vertically centers the items */
+    justify-content: space-between; /* Places space between the items */
+    margin: 10px auto; /* Adds space around the container and centers it */
+    max-width: 1150px; /* Ensures container width is limited */
+    padding: 0 10px; /* Adds padding for responsiveness */
+    flex-wrap: wrap; /* Allows items to wrap in smaller viewports */
 }
 
-/* Margin for list items */
-li {
-    margin: 5px 0;
-}
-
-/* Links styling */
-a {
-    text-decoration: none;
-    color: #007BFF;
-}
-
-a:hover {
-    text-decoration: underline;
-}
-
-/* Table styling */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    background-color: #fff; /* White background for the table */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Box shadow for a subtle lift effect */
-}
-
-/* Table header styling */
-th {
-    background-color: #007BFF; /* Blue background for headers */
-    color: #fff; /* White text color */
-    padding: 12px;
-    text-align: left;
-}
-
-/* Table row styling */
-td {
-    padding: 10px;
-    border-bottom: 1px solid #ddd; /* Light gray border bottom for rows */
-}
-
-/* Alternate row background color */
-tr:nth-child(even) {
-    background-color: #f2f2f2; /* Light gray background for even rows */
+.header-container h2 {
+    flex: 1; /* Allows the h2 to grow and take up available space */
+    margin: 0;
+    font-size: 1.25em; /* Adjust font size as needed */
+    color: #588157;
+    text-align: center; /* Centers text within the h2 element */
 }
 
 .search-container {
-    text-align: center;
-    margin: 20px 0;
+    flex: 1; /* Allows the search container to grow and take up available space */
+    display: flex; /* Uses Flexbox to align items within the container */
+    justify-content: flex-end; /* Aligns search form to the end */
 }
 
-#search-query {
-    font-size: 16px;
-    padding: 10px;
+.search-container form {
+    display: flex; /* Aligns form elements horizontally */
+    align-items: center; /* Vertically centers the elements */
+}
+
+.search-container input[type="text"] {
     width: 300px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-#search-button {
+    padding: 10px;
     font-size: 16px;
-    padding: 10px 20px;
-    margin-left: 10px;
-    border: none;
-    border-radius: 4px;
-    background-color: #007bff;
-    color: white;
-    cursor: pointer;
+    border-radius: 5px;
+    border: 1px solid #A3B18A;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
 }
 
-#search-button:hover {
-    background-color: #0056b3;
+.search-container input[type="text"]:focus {
+    border-color: #3A5A40;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.search-container button {
+    padding: 10px 15px;
+    font-size: 16px;
+    background-color: #588157;
+    color: #E5E2DC;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.search-container button:hover {
+    background-color: #344E41;
+}
+
+.table-container {
+    width: 80%;
+    margin: 0 auto;
+    overflow-x: auto;
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    color: #3A5A40;
+}
+
+table th, table td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+}
+
+table th {
+    background-color: #344E41;
+    color: white;
+    font-weight: bold;
+}
+
+table tr:hover {
+    background-color: #E5E2DC;
+}
+
+table tr:last-child td {
+    border-bottom: none;
+}
+
+table a {
+    color: #344E41;
+    font-weight: 545;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+table a:hover {
+    color: #588157;
+}
+
+/* Navigation Bar */
+.navbar {
+    background-color: #344E41;
+    padding: 10px 20px;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.nav-logo {
+    color: #fff;
+    font-size: 1.5em;
+    font-weight: bold;
+    text-decoration: none;
+    letter-spacing: 1.2px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-item {
+    margin-left: 20px;
+}
+
+.nav-link {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1em;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #A3B18A;
+}
+
+.nav-toggle {
+    display: none;
+    cursor: pointer;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+}
+
+ul {
+    list-style-type:circle;
+    text-decoration: none;
+    padding-left: 40px; 
+    font-size: 1.1em; 
+    margin: 0;
+    line-height: 1.6; 
+}
+
+li {
+    margin: 12px 0; /* Slightly more space between list items */
+}
+
+li a {
+    text-decoration: none;
+    color: #344E41;
+}
+
+li a:hover {
+    color: #588157;
+}
+
+p {
+    color: #3A5A40;
+    font-size: 1.12em;
 }

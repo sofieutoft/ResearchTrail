@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Research Paper Recommendations</title>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">Research Trail</a>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="/about" class="nav-link">About</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div>
+        <h1>About Research Trail</h1>
+        <div class="table-container">
+            <p>Welcome to Research Trail, your gateway to discovering cutting-edge research and uncovering related studies with ease. Our platform is designed to simplify the process of finding and exploring academic papers across various fields. At Research Trail, we believe that navigating the world of research should be as intuitive as possible. By leveraging advanced algorithms and a user-friendly interface, we provide you with tailored recommendations based on the papers you’re interested in. Whether you're a student, researcher, or simply passionate about a topic, our tool helps you trace the connections between papers and uncover a wealth of knowledge.</p>
+        </div>    
+    </div>
+    <script>
+        function goToRecommendation(link) {
+            window.location.href = `/recommend?link=${encodeURIComponent(link)}`;
+        }
+    </script>
+</body>
+</html>
