@@ -21,7 +21,7 @@ This project fetches research papers from the arXiv API, processes the data, and
 - **`Dockerfile`**: Docker configuration file for containerization.
 - **`.dockerignore`**: File to specify Docker files and directories to ignore.
 
-## View the Website
-![ResearchTrail 🥾🌳🌲](https://researchtrail.pythonanywhere.com/)
+## View the Website: ResearchTrail 🥾🌳🌲
+https://researchtrail.pythonanywhere.com
 
 ![Style Status](https://github.com/sofieutoft/arXivproject/actions/workflows/style.yaml/badge.svg)
