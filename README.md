@@ -1,4 +1,4 @@
-# arXiv Recommendation System
+# ResearchTrail 🥾🌳🌲: an arXiv Paper Recommendation System
 
 This project fetches research papers from the arXiv API, processes the data, and provides a recommendation system to suggest related papers based on content similarity. The aim of this project is to streamline the literature review process.
 
