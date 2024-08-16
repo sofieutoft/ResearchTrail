@@ -28,24 +28,28 @@
             </div>
         </div>        
         <div class="table-container">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Title</th>
-                        <th>Summary</th>
-                        <th>Published</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for row in table_data %}
-                    <tr>
-                        <td><a href="javascript:void(0);" onclick="goToRecommendation('{{ row.link }}')">{{ row.title }}</a></td>
-                        <td>{{ row.summary }}</td>
-                        <td>{{ row.published }}</td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+            {% if table_data %}
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Summary</th>
+                            <th>Published</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for row in table_data %}
+                        <tr>
+                            <td><a href="javascript:void(0);" onclick="goToRecommendation('{{ row.link }}')">{{ row.title }}</a></td>
+                            <td>{{ row.summary }}</td>
+                            <td>{{ row.published }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <tbody>No papers found. Please enter a search query.</tbody>
+            {% endif %}
         </div>
     </div>
     <script>

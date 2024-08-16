@@ -13,7 +13,13 @@ engine = db.create_engine(DATABASE_URI)
 
 @app.route('/')
 def index():
-    search_query = request.args.get('query', 'all:machine learning')
+    search_query = request.args.get('query', '').strip()  # Get the search query and strip any extra whitespace
+
+    if not search_query:  # Check if the search query is empty
+        # Return an empty response or some message indicating no search query was provided
+        return render_template('index.html', table_data=[], search_query=search_query)
+
+    # If search_query is not empty, proceed with fetching and processing data
     parameters = {
         "search_query": search_query,
         "start": 0,
