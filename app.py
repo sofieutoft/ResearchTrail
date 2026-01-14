@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for
 from config import ARXIV_API_URL, DATABASE_URI
 from data.fetch_data import get_request, extract_data
 from data.preprocess import preprocess_text
-from data.database import connect, fetch_all_papers
+from data.database import connect, fetch_all_papers, fetch_paper_by_query, fetch_paper_by_id
 from data.recommend import get_recommendations
 import pandas as pd
 import sqlalchemy as db
@@ -23,20 +23,20 @@ def index():
     parameters = {
         "search_query": search_query,
         "start": 0,
-        "max_results": 500
+        "max_results": 100
     }
 
     # Fetch and process data
     response = get_request(ARXIV_API_URL, parameters)
     data = extract_data(response.content)
     data = pd.DataFrame(data)
-    data['clean_summary'] = data['summary'].apply(preprocess_text)
+    data['clean_summary'] = data['summary'].map(preprocess_text)
 
     # Connect to database and store data
     connect(data)
     
     # Fetch data from the database for display
-    data = fetch_all_papers(engine)
+    data = fetch_paper_by_query(engine, search_query)
     if data is None or data.empty:
         print("Data fetch failed or returned an empty DataFrame")
         return render_template('index.html', table_data=[])
@@ -50,7 +50,7 @@ def index():
 @app.route('/recommend', methods=['GET'])
 def recommend():
     paper_id = request.args.get('link')
-    data = fetch_all_papers(engine)
+    data = fetch_paper_by_id(engine)
 
     # Validate paper_id
     if paper_id is None or paper_id not in data['link'].values:
@@ -83,6 +83,3 @@ def webhook():
 @app.route('/about')
 def about():
     return render_template('about.html')
-
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=1024, debug=True)
